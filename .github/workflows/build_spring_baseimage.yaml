@@ -17,9 +17,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
+    - name: Set variables
+      run: |
+        DATE=$(date +%s)
+
+    
     - name: Build the Docker image
       run: |
-        docker build -t luke19/spring-base-image:$(date +%s) spring/
-        docker tag luke19/spring-base-image:$(date +%s) luke19/spring-base-image:ubuntu-latest
-        docker push luke19/spring-base-image:$(date +%s)
+        docker build -t luke19/spring-base-image:${{ env.DATE }} spring/
+        docker tag luke19/spring-base-image:${{ env.DATE }} luke19/spring-base-image:latest
+        docker push luke19/spring-base-image:${{ env.DATE }}
         docker luke19/spring-base-image:latest
