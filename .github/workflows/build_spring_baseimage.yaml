@@ -20,12 +20,12 @@ jobs:
 
     - name: Set variables
       run: |
-        DATE=$(date +%s)
+        DATE_TMP=$(date +%s)
+        echo "DATE=$DATE_TMP" >> $GITHUB_ENV
 
     
     - name: Build the Docker image
       run: |
-        echo ${{ env.DATE }}
         docker build -t luke19/spring-base-image:${{ env.DATE }} spring/
         docker tag luke19/spring-base-image:${{ env.DATE }} luke19/spring-base-image:latest
         docker push luke19/spring-base-image:${{ env.DATE }}
