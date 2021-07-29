@@ -5,6 +5,6 @@ ENV TZ=Europe/Berlin
 WORKDIR /APP
 
 # run container as non root
-RUN apk update && apk upgrade -U -a && addgroup -S familygroup && adduser -S familyuser -G familygroup
+RUN apk update && apk upgrade -U -a && addgroup -S springgroup && adduser -S springuser -G springgroup
 
-USER familyuser
+USER springuser
