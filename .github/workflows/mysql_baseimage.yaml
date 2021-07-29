@@ -1,0 +1,32 @@
+name: Build mysql base image
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'mysql/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'mysql/**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set variables
+      run: |
+        DATE_TMP=$(date +%s)
+        echo "DATE=$DATE_TMP" >> $GITHUB_ENV
+
+    - name: Build the Docker image
+      run: |
+        docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD }}
+        docker build -t luke19/mysql-base-image:${{ env.DATE }} mysql/
+        docker tag luke19/mysql-base-image:${{ env.DATE }} luke19/mysql-base-image:latest
+        docker push luke19/mysql-base-image:${{ env.DATE }}
+        docker push luke19/mysql-base-image:latest
