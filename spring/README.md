@@ -1,6 +1,6 @@
 # spring base image
 
-Add TZ environment variable
+Adds TZ environment variable
 
 creates a workdir (APP)
 adds a user with group (springgroup, springuser)
