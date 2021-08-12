@@ -8,4 +8,9 @@ WORKDIR /app
 RUN apk update && apk upgrade -U -a \
 && addgroup -S springgroup && adduser -S springuser -G springgroup
 
+#create tmpdir for java.io.tmpdir
+RUN mkdir /app/tmp
+
+RUN chown -R springuser:springgroup /app/tmp
+
 USER springuser
