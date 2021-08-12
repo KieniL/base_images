@@ -10,6 +10,8 @@ RUN mkdir /var/cache/nginx/client_temp /var/cache/nginx/proxy_temp \
   /var/cache/nginx/fastcgi_temp /var/cache/nginx/uwsgi_temp \
   /var/cache/nginx/scgi_temp && echo "1" > /tmp/nginx.pid && echo "1" >  /var/run/nginx.pid 
 
+RUN cp -R /etc/nginx/* /app
+
 # set file permissions for nginx user
 RUN chown -R nginx:nginx /var/cache/nginx /etc/nginx/ /tmp/nginx.pid
 
