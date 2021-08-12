@@ -13,7 +13,7 @@ RUN mkdir /var/cache/nginx/client_temp /var/cache/nginx/proxy_temp \
 RUN cp -R /etc/nginx/* /app
 
 # set file permissions for nginx user
-RUN chown -R nginx:nginx /var/cache/nginx /etc/nginx/ /tmp/nginx.pid
+RUN chown -R nginx:nginx /var/cache/nginx /etc/nginx/ /tmp/nginx.pid /app
 
 # switch to non-root user
 USER nginx
