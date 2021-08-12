@@ -11,4 +11,6 @@ RUN apk update && apk upgrade -U -a \
 #create tmpdir for java.io.tmpdir
 RUN mkdir /app/tmp
 
+RUN chown -R springuser:springgroup /app/tmp
+
 USER springuser
