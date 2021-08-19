@@ -1,16 +1,23 @@
 FROM adoptopenjdk/openjdk13:x86_64-alpine-jre13u-nightly
 
+LABEL maintainer="KieniL"
+LABEL name="springbaseimage"
+LABEL version="1.0"
+LABEL author="KieniL"
+LABEL contact="https://github.com/KieniL/base_images/issues"
+LABEL documentation="https://github.com/KieniL/base_images"
+
 ENV TZ=Europe/Berlin
 
 WORKDIR /app
 
-# run container as non root
-RUN apk update && apk upgrade -U -a \
-&& addgroup -S springgroup && adduser -S springuser -G springgroup
-
-#create tmpdir for java.io.tmpdir
-RUN mkdir /app/tmp
-
-RUN chown -R springuser:springgroup /app/tmp
+# create user
+# create tmpdir for java.io.tmpdir
+# set permissions on /app/tmp to new user
+RUN apk update --no-cache \
+&& addgroup -S springgroup && adduser -S springuser -G springgroup \
+&& mkdir /app/tmp \
+&& chown -R springuser:springgroup /app/tmp \
+&& rm -R /var/cache/apk/
 
 USER springuser
