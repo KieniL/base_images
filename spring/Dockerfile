@@ -15,6 +15,7 @@ WORKDIR /app
 # create tmpdir for java.io.tmpdir
 # set permissions on /app/tmp to new user
 RUN apk update --no-cache \
+&& apk add git \
 && addgroup -S springgroup && adduser -S springuser -G springgroup \
 && mkdir /app/tmp \
 && chown -R springuser:springgroup /app \
